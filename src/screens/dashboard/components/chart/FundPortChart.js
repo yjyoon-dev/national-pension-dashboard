@@ -33,7 +33,7 @@ const renderCustomizedLabel = ({
   percent,
   index,
 }) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.3;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
@@ -92,7 +92,7 @@ const FundPortChart = ({ year }) => {
             cx="50%"
             cy="50%"
             innerRadius={30}
-            outerRadius={90}
+            outerRadius={70}
             fill="#82ca9d"
             labelLine={false}
             label={renderCustomizedLabel}
