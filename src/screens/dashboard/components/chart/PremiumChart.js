@@ -37,7 +37,10 @@ const PremiumChart = ({ premium, onChangePremium }) => {
     if (isNaN(value)) return;
 
     onChangePremium(value);
-    setData((data) => [...data.slice(0, -1), { year: 2060, premium: premium }]);
+    const temp = [];
+
+    for (let i = 2023; i <= 2060; i++) temp.push({ year: i, premium: premium });
+    setData(data.slice(0, 35).concat(temp));
   };
 
   return (
@@ -64,6 +67,7 @@ const PremiumChart = ({ premium, onChangePremium }) => {
           type="stepAfter"
           dataKey="premium"
           stroke="#8884d8"
+          strokeWidth={3}
           dot={false}
         />
       </LineChart>

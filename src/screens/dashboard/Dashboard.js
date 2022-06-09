@@ -34,7 +34,7 @@ const Dashboard = () => {
   const [premium, setPremium] = useState(9);
   const [replacement, setReplacement] = useState(40);
   const [receiptAge, setReceiptAge] = useState(65);
-  const [year, setYear] = useState(2020);
+  const [year, setYear] = useState(1998);
 
   const onChangePremium = (value) => {
     setPremium(value);
@@ -127,9 +127,15 @@ const Dashboard = () => {
     const earns = [];
     for (let i = 0; i < 42; i++) {
       const year = 2019 + i;
-      const earn = assets[i] * earningMap.get(year) + incomeMap.get(year);
-      earns.push(earn);
-      assets.push(earn - expenseMap.get(year));
+      earns.push(assets[i] * (earningMap.get(year) - 1) + incomeMap.get(year));
+      assets.push(
+        Math.max(
+          0,
+          assets[i] * earningMap.get(year) +
+            incomeMap.get(year) -
+            expenseMap.get(year),
+        ),
+      );
     }
 
     assets.splice(0, 4);

@@ -37,10 +37,12 @@ const ReplacementChart = ({ replacement, onChangeReplacement }) => {
     if (isNaN(value)) return;
 
     onChangeReplacement(value);
-    setData((data) => [
-      ...data.slice(0, -1),
-      { year: 2060, replacement: replacement },
-    ]);
+
+    const temp = [];
+    for (let i = 2029; i <= 2060; i++)
+      temp.push({ year: i, replacement: replacement });
+
+    setData(data.slice(0, 41).concat(temp));
   };
 
   return (
@@ -67,6 +69,7 @@ const ReplacementChart = ({ replacement, onChangeReplacement }) => {
           type="stepAfter"
           dataKey="replacement"
           stroke="#82ca9d"
+          strokeWidth={3}
           dot={false}
         />
       </LineChart>

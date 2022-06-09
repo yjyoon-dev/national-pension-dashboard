@@ -8,6 +8,7 @@ import {
   Bar,
   XAxis,
   YAxis,
+  ZAxis,
   CartesianGrid,
   Tooltip,
   Legend,
@@ -43,11 +44,14 @@ const BalanceChart = ({ balance }) => {
             label={{ position: 'insideBottomRight', offset: 0 }}
             scale="band"
           />
-          <YAxis dataKey="asset" />
+          <YAxis yAxisId="left" orientation="left" />
+          <YAxis yAxisId="right" orientation="right" />
+          <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
           <Legend />
           <Bar
             name="적립기금(십억원)"
+            yAxisId="left"
             dataKey="asset"
             barSize={20}
             fill="#82ca9d"
@@ -55,12 +59,14 @@ const BalanceChart = ({ balance }) => {
           <Line
             name="총 수입(십억원)"
             type="monotone"
+            yAxisId="right"
             dataKey="earn"
             stroke="#8884d8"
           />
           <Line
             name="총 지출(십억원)"
             type="monotone"
+            yAxisId="right"
             dataKey="expense"
             stroke="#ff7300"
           />
